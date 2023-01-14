@@ -4,6 +4,7 @@ from .models import Group, Post
 
 col_pub = 10
 
+
 def index(request):
     posts = Post.objects.all
     context = {
