@@ -2,11 +2,11 @@ from django.shortcuts import render, get_object_or_404
 
 from .models import Group, Post
 
-col_pub = 10
+OBJECTS_PAGE = 10
 
 
 def index(request):
-    posts = Post.objects.all
+    posts = Post.objects.all()
     context = {
         'posts': posts,
     }
@@ -15,7 +15,7 @@ def index(request):
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    posts = Post.objects.filter(group=group)[:col_pub]
+    posts = group.posts.all()[:OBJECTS_PAGE]
     context = {
         'group': group,
         'posts': posts,
